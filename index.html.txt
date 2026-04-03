@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You deserve happiness</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f0e0d;
+    --text: #f0ece4;
+    --muted: #8a8478;
+    --accent: #c9b99a;
+    --line: rgba(201,185,154,0.2);
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    overflow-x: hidden;
+  }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    width: 100%;
+    animation: fadeUp 1.2s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--line);
+    margin: 0 auto 2.5rem;
+  }
+
+  .quote {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    line-height: 1.55;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+    min-height: 4rem;
+    transition: opacity 0.5s ease;
+  }
+
+  .quote.fading { opacity: 0; }
+
+  .divider2 {
+    width: 1px;
+    height: 40px;
+    background: var(--line);
+    margin: 0 auto 2.5rem;
+  }
+
+  .message {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--muted);
+    margin-bottom: 2.8rem;
+  }
+
+  .message strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .donate-btn {
+    display: inline-block;
+    padding: 14px 36px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.3s ease, color 0.3s ease;
+    border-radius: 2px;
+  }
+
+  .donate-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .footer {
+    margin-top: 3.5rem;
+    font-size: 11px;
+    color: var(--muted);
+    opacity: 0.5;
+    letter-spacing: 0.08em;
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="wrap">
+
+  <p class="eyebrow" id="eyebrow">You are not alone</p>
+  <div class="divider"></div>
+
+  <p class="quote" id="quote"></p>
+
+  <div class="divider2"></div>
+
+  <p class="message" id="message">
+    <strong>I'm rooting for you.</strong><br>
+    You are not alone.<br><br>
+    If you want to help me keep<br>supporting people like us:
+  </p>
+
+  <a class="donate-btn" href="https://paypal.me/youdeservehappiness" target="_blank" id="donate-btn">
+    Make a small donation
+  </a>
+
+  <p class="footer" id="footer">Every little bit helps. Thank you.</p>
+</div>
+
+<script>
+const content = {
+  it: {
+    eyebrow: "Non sei solo/a",
+    quotes: [
+      "Ce la farai. Non perché sia facile, ma perché sei più forte di quanto pensi.",
+      "Anche i giorni più bui finiscono. E tu sei ancora qui.",
+      "Non devi avere tutto sotto controllo. Basta fare il prossimo piccolo passo.",
+      "Sei abbastanza. Esattamente come sei, in questo momento.",
+      "Le tempeste passano. Anche questa."
+    ],
+    message: "<strong>Faccio il tifo per te.</strong><br>Non sei solo/a.<br><br>Se vuoi aiutarmi a continuare<br>a supportare persone come noi:",
+    donate: "Fai una piccola donazione",
+    footer: "Ogni contributo aiuta. Grazie."
+  },
+  en: {
+    eyebrow: "You are not alone",
+    quotes: [
+      "You will get through this. Not because it's easy, but because you're stronger than you think.",
+      "Even the darkest days end. And you are still here.",
+      "You don't need to have it all figured out. Just take the next small step.",
+      "You are enough. Exactly as you are, right now.",
+      "Storms pass. This one will too."
+    ],
+    message: "<strong>I'm rooting for you.</strong><br>You are not alone.<br><br>If you want to help me keep<br>supporting people like us:",
+    donate: "Make a small donation",
+    footer: "Every little bit helps. Thank you."
+  },
+  fr: {
+    eyebrow: "Tu n'es pas seul(e)",
+    quotes: [
+      "Tu vas t'en sortir. Pas parce que c'est facile, mais parce que tu es plus fort(e) que tu ne le crois.",
+      "Même les jours les plus sombres se terminent. Et tu es encore là.",
+      "Tu n'as pas besoin de tout contrôler. Il suffit de faire le prochain petit pas.",
+      "Tu es suffisant(e). Exactement comme tu es, en ce moment.",
+      "Les tempêtes passent. Celle-ci aussi."
+    ],
+    message: "<strong>Je crois en toi.</strong><br>Tu n'es pas seul(e).<br><br>Si tu veux m'aider à continuer<br>à soutenir des gens comme nous :",
+    donate: "Faire un petit don",
+    footer: "Chaque contribution aide. Merci."
+  },
+  de: {
+    eyebrow: "Du bist nicht allein",
+    quotes: [
+      "Du wirst es schaffen. Nicht weil es einfach ist, sondern weil du stärker bist als du denkst.",
+      "Auch die dunkelsten Tage enden. Und du bist noch hier.",
+      "Du musst nicht alles unter Kontrolle haben. Mach einfach den nächsten kleinen Schritt.",
+      "Du bist genug. Genau so wie du bist, in diesem Moment.",
+      "Stürme ziehen weiter. Auch dieser."
+    ],
+    message: "<strong>Ich drücke dir die Daumen.</strong><br>Du bist nicht allein.<br><br>Wenn du mir helfen möchtest,<br>Menschen wie uns zu unterstützen:",
+    donate: "Kleine Spende machen",
+    footer: "Jeder Beitrag hilft. Danke."
+  },
+  es: {
+    eyebrow: "No estás solo/a",
+    quotes: [
+      "Lo lograrás. No porque sea fácil, sino porque eres más fuerte de lo que crees.",
+      "Incluso los días más oscuros terminan. Y tú sigues aquí.",
+      "No necesitas tenerlo todo controlado. Solo da el siguiente pequeño paso.",
+      "Eres suficiente. Exactamente como eres, en este momento.",
+      "Las tormentas pasan. Esta también."
+    ],
+    message: "<strong>Te apoyo.</strong><br>No estás solo/a.<br><br>Si quieres ayudarme a seguir<br>apoyando a personas como nosotros:",
+    donate: "Hacer una pequeña donación",
+    footer: "Cada aporte ayuda. Gracias."
+  },
+  pt: {
+    eyebrow: "Você não está sozinho/a",
+    quotes: [
+      "Você vai superar isso. Não porque é fácil, mas porque você é mais forte do que pensa.",
+      "Até os dias mais escuros terminam. E você ainda está aqui.",
+      "Você não precisa ter tudo sob controle. Basta dar o próximo pequeno passo.",
+      "Você é suficiente. Exatamente como você é, agora.",
+      "As tempestades passam. Esta também vai."
+    ],
+    message: "<strong>Estou torcendo por você.</strong><br>Você não está sozinho/a.<br><br>Se quiser me ajudar a continuar<br>apoiando pessoas como nós:",
+    donate: "Fazer uma pequena doação",
+    footer: "Cada contribuição ajuda. Obrigado."
+  }
+};
+
+function getLang() {
+  const lang = (navigator.language || 'en').slice(0, 2).toLowerCase();
+  return content[lang] ? lang : 'en';
+}
+
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function init() {
+  const lang = getLang();
+  const c = content[lang];
+
+  document.documentElement.lang = lang;
+  document.getElementById('eyebrow').textContent = c.eyebrow;
+  document.getElementById('message').innerHTML = c.message;
+  document.getElementById('donate-btn').textContent = c.donate;
+  document.getElementById('footer').textContent = c.footer;
+
+  const quoteEl = document.getElementById('quote');
+  quoteEl.textContent = pickRandom(c.quotes);
+
+  setInterval(() => {
+    quoteEl.classList.add('fading');
+    setTimeout(() => {
+      quoteEl.textContent = pickRandom(c.quotes);
+      quoteEl.classList.remove('fading');
+    }, 500);
+  }, 8000);
+}
+
+init();
+</script>
+</body>
+</html>
