@@ -149,9 +149,9 @@
     If you want to help me keep<br>supporting people like us:
   </p>
 
-  <a class="donate-btn" href="https://paypal.me/youdeservehappiness" target="_blank" id="donate-btn">
-    Make a small donation
-  </a>
+  <div id="kofi-wrap"></div>
+  <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+  <script type='text/javascript'>kofiwidget2.init('Keep this going ♥', '#3a9e7e', 'Z8Z71X8388');kofiwidget2.draw();</script>
 
   <p class="footer" id="footer">Every little bit helps. Thank you.</p>
 </div>
@@ -160,6 +160,7 @@
 const content = {
   it: {
     eyebrow: "Non sei solo/a",
+    question: "Ti senti sopraffatto/a?\nHai bisogno di un motivo per andare avanti?",
     quotes: [
       "Ce la farai. Non perché sia facile, ma perché sei più forte di quanto pensi.",
       "Anche i giorni più bui finiscono. E tu sei ancora qui.",
@@ -167,12 +168,12 @@ const content = {
       "Sei abbastanza. Esattamente come sei, in questo momento.",
       "Le tempeste passano. Anche questa."
     ],
-    message: "<strong>Faccio il tifo per te.</strong><br>Non sei solo/a.<br><br>Se vuoi aiutarmi a continuare<br>a supportare persone come noi:",
-    donate: "Fai una piccola donazione",
+    message: "<strong>Faccio il tifo per te.</strong><br>Non sei solo/a.<br><br>Se questo ti ha aiutato anche solo un po',<br>considera di supportarmi:",
     footer: "Ogni contributo aiuta. Grazie."
   },
   en: {
     eyebrow: "You are not alone",
+    question: "Feeling overwhelmed?\nNeed a reason to go on?",
     quotes: [
       "You will get through this. Not because it's easy, but because you're stronger than you think.",
       "Even the darkest days end. And you are still here.",
@@ -180,12 +181,12 @@ const content = {
       "You are enough. Exactly as you are, right now.",
       "Storms pass. This one will too."
     ],
-    message: "<strong>I'm rooting for you.</strong><br>You are not alone.<br><br>If you want to help me keep<br>supporting people like us:",
-    donate: "Make a small donation",
+    message: "<strong>I'm rooting for you.</strong><br>You are not alone.<br><br>If this helped, even just a little,<br>consider supporting me:",
     footer: "Every little bit helps. Thank you."
   },
   fr: {
     eyebrow: "Tu n'es pas seul(e)",
+    question: "Tu te sens dépassé(e) ?\nTu as besoin d'une raison de continuer ?",
     quotes: [
       "Tu vas t'en sortir. Pas parce que c'est facile, mais parce que tu es plus fort(e) que tu ne le crois.",
       "Même les jours les plus sombres se terminent. Et tu es encore là.",
@@ -193,12 +194,12 @@ const content = {
       "Tu es suffisant(e). Exactement comme tu es, en ce moment.",
       "Les tempêtes passent. Celle-ci aussi."
     ],
-    message: "<strong>Je crois en toi.</strong><br>Tu n'es pas seul(e).<br><br>Si tu veux m'aider à continuer<br>à soutenir des gens comme nous :",
-    donate: "Faire un petit don",
+    message: "<strong>Je crois en toi.</strong><br>Tu n'es pas seul(e).<br><br>Si ça t'a aidé, même un peu,<br>pense à me soutenir :",
     footer: "Chaque contribution aide. Merci."
   },
   de: {
     eyebrow: "Du bist nicht allein",
+    question: "Fühlst du dich überfordert?\nBrauchtst du einen Grund weiterzumachen?",
     quotes: [
       "Du wirst es schaffen. Nicht weil es einfach ist, sondern weil du stärker bist als du denkst.",
       "Auch die dunkelsten Tage enden. Und du bist noch hier.",
@@ -206,12 +207,12 @@ const content = {
       "Du bist genug. Genau so wie du bist, in diesem Moment.",
       "Stürme ziehen weiter. Auch dieser."
     ],
-    message: "<strong>Ich drücke dir die Daumen.</strong><br>Du bist nicht allein.<br><br>Wenn du mir helfen möchtest,<br>Menschen wie uns zu unterstützen:",
-    donate: "Kleine Spende machen",
+    message: "<strong>Ich drücke dir die Daumen.</strong><br>Du bist nicht allein.<br><br>Wenn das geholfen hat, auch nur ein bisschen,<br>unterstütze mich gerne:",
     footer: "Jeder Beitrag hilft. Danke."
   },
   es: {
     eyebrow: "No estás solo/a",
+    question: "¿Te sientes abrumado/a?\n¿Necesitas una razón para seguir?",
     quotes: [
       "Lo lograrás. No porque sea fácil, sino porque eres más fuerte de lo que crees.",
       "Incluso los días más oscuros terminan. Y tú sigues aquí.",
@@ -219,12 +220,12 @@ const content = {
       "Eres suficiente. Exactamente como eres, en este momento.",
       "Las tormentas pasan. Esta también."
     ],
-    message: "<strong>Te apoyo.</strong><br>No estás solo/a.<br><br>Si quieres ayudarme a seguir<br>apoyando a personas como nosotros:",
-    donate: "Hacer una pequeña donación",
+    message: "<strong>Te apoyo.</strong><br>No estás solo/a.<br><br>Si esto te ayudó, aunque sea un poco,<br>considera apoyarme:",
     footer: "Cada aporte ayuda. Gracias."
   },
   pt: {
     eyebrow: "Você não está sozinho/a",
+    question: "Sentindo-se sobrecarregado/a?\nPrecisa de um motivo para continuar?",
     quotes: [
       "Você vai superar isso. Não porque é fácil, mas porque você é mais forte do que pensa.",
       "Até os dias mais escuros terminam. E você ainda está aqui.",
@@ -232,8 +233,7 @@ const content = {
       "Você é suficiente. Exatamente como você é, agora.",
       "As tempestades passam. Esta também vai."
     ],
-    message: "<strong>Estou torcendo por você.</strong><br>Você não está sozinho/a.<br><br>Se quiser me ajudar a continuar<br>apoiando pessoas como nós:",
-    donate: "Fazer uma pequena doação",
+    message: "<strong>Estou torcendo por você.</strong><br>Você não está sozinho/a.<br><br>Se isso ajudou, mesmo que um pouco,<br>considere me apoiar:",
     footer: "Cada contribuição ajuda. Obrigado."
   }
 };
@@ -241,6 +241,10 @@ const content = {
 function getLang() {
   const lang = (navigator.language || 'en').slice(0, 2).toLowerCase();
   return content[lang] ? lang : 'en';
+}
+
+function nl2br(str) {
+  return str.replace(/\n/g, '<br>');
 }
 
 function pickRandom(arr) {
@@ -254,7 +258,6 @@ function init() {
   document.documentElement.lang = lang;
   document.getElementById('eyebrow').textContent = c.eyebrow;
   document.getElementById('message').innerHTML = c.message;
-  document.getElementById('donate-btn').textContent = c.donate;
   document.getElementById('footer').textContent = c.footer;
 
   const quoteEl = document.getElementById('quote');
