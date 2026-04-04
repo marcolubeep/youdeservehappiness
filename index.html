@@ -93,7 +93,7 @@
   }
 
   .message {
-    font-size: 1rem;
+    font-size: 0.82rem;
     line-height: 1.75;
     color: var(--muted);
     margin-bottom: 2.8rem;
@@ -135,9 +135,6 @@
 <body>
 <div class="grain"></div>
 <div class="wrap">
-
-  <p class="eyebrow" id="eyebrow">You are not alone</p>
-  <div class="divider"></div>
 
   <p class="quote" id="quote"></p>
 
@@ -376,7 +373,6 @@ function init() {
   const c = content[lang];
 
   document.documentElement.lang = lang;
-  document.getElementById('eyebrow').textContent = c.eyebrow;
   document.getElementById('message').innerHTML = c.message;
   document.getElementById('footer').textContent = c.footer;
 
