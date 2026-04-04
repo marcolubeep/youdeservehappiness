@@ -92,6 +92,26 @@
     margin: 0 auto 2.5rem;
   }
 
+  .message-hero {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .message-hero strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .message-support {
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 1.8rem;
+    opacity: 0.7;
+  }
+
   .message {
     font-size: 0.82rem;
     line-height: 1.75;
@@ -140,10 +160,13 @@
 
   <div class="divider2"></div>
 
-  <p class="message" id="message">
+  <p class="message-hero" id="message-hero">
     <strong>I'm rooting for you.</strong><br>
-    You are not alone.<br><br>
-    If you want to help me keep<br>supporting people like us:
+    You are not alone.
+  </p>
+
+  <p class="message-support" id="message-support">
+    If this helped, even just a little,<br>consider supporting me:
   </p>
 
   <div id="kofi-wrap"></div>
@@ -174,7 +197,8 @@ const content = {
       "Sei sopravvissuto/a al 100% delle tue giornate difficili finora.",
       "Qualcuno, da qualche parte, è grato che tu esista."
     ],
-    message: "<strong>Faccio il tifo per te.</strong><br>Non sei solo/a.<br><br>Se questo ti ha aiutato anche solo un po',<br>considera di supportarmi:",
+    messageHero: "<strong>Faccio il tifo per te.</strong><br>Non sei solo/a.",
+    messageSupport: "Se questo ti ha aiutato anche solo un po',<br>considera di supportarmi:",
     footer: "Ogni contributo aiuta. Grazie."
   },
   en: {
@@ -196,7 +220,8 @@ const content = {
       "You have survived 100% of your hardest days so far.",
       "Someone, somewhere, is grateful you exist."
     ],
-    message: "<strong>I'm rooting for you.</strong><br>You are not alone.<br><br>If this helped, even just a little,<br>consider supporting me:",
+    messageHero: "<strong>I'm rooting for you.</strong><br>You are not alone.",
+    messageSupport: "If this helped, even just a little,<br>consider supporting me:",
     footer: "Every little bit helps. Thank you."
   },
   fr: {
@@ -218,7 +243,8 @@ const content = {
       "Tu as surmonté 100% de tes jours les plus difficiles jusqu'ici.",
       "Quelqu'un, quelque part, est reconnaissant que tu existes."
     ],
-    message: "<strong>Je crois en toi.</strong><br>Tu n'es pas seul(e).<br><br>Si ça t'a aidé, même un peu,<br>pense à me soutenir :",
+    messageHero: "<strong>Je crois en toi.</strong><br>Tu n'es pas seul(e).",
+    messageSupport: "Si ça t'a aidé, même un peu,<br>pense à me soutenir :",
     footer: "Chaque contribution aide. Merci."
   },
   de: {
@@ -240,7 +266,8 @@ const content = {
       "Du hast 100% deiner schwierigsten Tage bisher überstanden.",
       "Irgendwo da draußen ist jemand dankbar, dass du existierst."
     ],
-    message: "<strong>Ich drücke dir die Daumen.</strong><br>Du bist nicht allein.<br><br>Wenn das geholfen hat, auch nur ein bisschen,<br>unterstütze mich gerne:",
+    messageHero: "<strong>Ich drücke dir die Daumen.</strong><br>Du bist nicht allein.",
+    messageSupport: "Wenn das geholfen hat, auch nur ein bisschen,<br>unterstütze mich gerne:",
     footer: "Jeder Beitrag hilft. Danke."
   },
   es: {
@@ -262,7 +289,8 @@ const content = {
       "Has superado el 100% de tus días más difíciles hasta ahora.",
       "Alguien, en algún lugar, está agradecido de que existas."
     ],
-    message: "<strong>Te apoyo.</strong><br>No estás solo/a.<br><br>Si esto te ayudó, aunque sea un poco,<br>considera apoyarme:",
+    messageHero: "<strong>Te apoyo.</strong><br>No estás solo/a.",
+    messageSupport: "Si esto te ayudó, aunque sea un poco,<br>considera apoyarme:",
     footer: "Cada aporte ayuda. Gracias."
   },
   pt: {
@@ -284,7 +312,8 @@ const content = {
       "Você sobreviveu a 100% dos seus dias mais difíceis até agora.",
       "Alguém, em algum lugar, é grato por você existir."
     ],
-    message: "<strong>Estou torcendo por você.</strong><br>Você não está sozinho/a.<br><br>Se isso ajudou, mesmo que um pouco,<br>considere me apoiar:",
+    messageHero: "<strong>Estou torcendo por você.</strong><br>Você não está sozinho/a.",
+    messageSupport: "Se isso ajudou, mesmo que um pouco,<br>considere me apoiar:",
     footer: "Cada contribuição ajuda. Obrigado."
   },
   ja: {
@@ -306,7 +335,8 @@ const content = {
       "あなたはこれまでの辛い日々を100%乗り越えてきた。",
       "どこかに、あなたが存在することに感謝している人がいる。"
     ],
-    message: "<strong>あなたを応援しています。</strong><br>一人じゃない。<br><br>少しでも助けになったなら、<br>サポートしてもらえると嬉しいです：",
+    messageHero: "<strong>あなたを応援しています。</strong><br>一人じゃない。",
+    messageSupport: "少しでも助けになったなら、<br>サポートしてもらえると嬉しいです：",
     footer: "どんな小さな支援も力になります。ありがとう。"
   },
   zh: {
@@ -328,7 +358,8 @@ const content = {
       "你已经度过了迄今为止100%的艰难日子。",
       "在某个地方，有人感谢你的存在。"
     ],
-    message: "<strong>我为你加油。</strong><br>你并不孤单。<br><br>如果这对你有一点点帮助，<br>欢迎支持我：",
+    messageHero: "<strong>我为你加油。</strong><br>你并不孤单。",
+    messageSupport: "如果这对你有一点点帮助，<br>欢迎支持我：",
     footer: "每一份心意都很重要。谢谢你。"
   },
   ru: {
@@ -350,7 +381,8 @@ const content = {
       "Ты пережил/пережила 100% своих самых тяжёлых дней.",
       "Где-то есть человек, который благодарен за то, что ты существуешь."
     ],
-    message: "<strong>Я болею за тебя.</strong><br>Ты не один/одна.<br><br>Если это помогло, даже чуть-чуть,<br>рассмотри возможность поддержать меня:",
+    messageHero: "<strong>Я болею за тебя.</strong><br>Ты не один/одна.",
+    messageSupport: "Если это помогло, даже чуть-чуть,<br>рассмотри возможность поддержать меня:",
     footer: "Каждый вклад важен. Спасибо."
   }
 };
@@ -373,7 +405,8 @@ function init() {
   const c = content[lang];
 
   document.documentElement.lang = lang;
-  document.getElementById('message').innerHTML = c.message;
+  document.getElementById('message-hero').innerHTML = c.messageHero;
+  document.getElementById('message-support').innerHTML = c.messageSupport;
   document.getElementById('footer').textContent = c.footer;
 
   if (lang === 'ja' || lang === 'zh') {
