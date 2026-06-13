@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>You deserve happiness</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -64,23 +64,21 @@
     text-transform: uppercase;
     color: var(--muted);
     margin-bottom: 2.5rem;
-  }
-
-  .divider {
-    width: 40px;
-    height: 1px;
-    background: var(--line);
-    margin: 0 auto 2.5rem;
+    min-height: 14px;
   }
 
   .quote {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(1.1rem, 4vw, 1.5rem);
-    line-height: 1.55;
+    font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+    line-height: 1.6;
     color: var(--text);
     margin-bottom: 2.5rem;
-    min-height: 4rem;
-    transition: opacity 0.5s ease;
+    min-height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-wrap: pretty;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .quote.fading { opacity: 0; }
@@ -96,7 +94,7 @@
     font-size: 1rem;
     line-height: 1.75;
     color: var(--muted);
-    margin-bottom: 0.6rem;
+    margin-bottom: 1.5rem;
   }
 
   .message-hero strong {
@@ -104,51 +102,15 @@
     font-weight: 400;
   }
 
-  .message-support {
-    font-size: 0.78rem;
-    line-height: 1.7;
-    color: var(--muted);
-    margin-bottom: 1.8rem;
-    opacity: 0.7;
-  }
-
-  .message {
-    font-size: 0.82rem;
-    line-height: 1.75;
-    color: var(--muted);
-    margin-bottom: 2.8rem;
-  }
-
-  .message strong {
-    color: var(--text);
-    font-weight: 400;
-  }
-
   #kofi-wrap {
-    transform: scale(0.75);
+    transform: scale(0.85);
     transform-origin: center top;
-    margin-bottom: -0.5rem;
-  }
+    margin-bottom: 1rem;
     display: inline-block;
-    padding: 14px 36px;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    text-decoration: none;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    transition: background 0.3s ease, color 0.3s ease;
-    border-radius: 2px;
-  }
-
-  .donate-btn:hover {
-    background: var(--accent);
-    color: var(--bg);
   }
 
   .footer {
-    margin-top: 3.5rem;
+    margin-top: 2rem;
     font-size: 11px;
     color: var(--muted);
     opacity: 0.5;
@@ -160,20 +122,24 @@
 <div class="grain"></div>
 <div class="wrap">
 
+  <p class="eyebrow" id="eyebrow"></p>
   <p class="quote" id="quote"></p>
 
   <div class="divider2"></div>
 
-  <p class="message-hero" id="message-hero">
-    <strong>I'm rooting for you.</strong><br>
-    You are not alone.
-  </p>
+  <p class="message-hero" id="message-hero"></p>
 
   <div id="kofi-wrap"></div>
   <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-  <script type='text/javascript'>kofiwidget2.init('Keep this going ♥', '#3a9e7e', 'Z8Z71X8388');kofiwidget2.draw();</script>
+  <script type='text/javascript'>
+    // Small timeout ensures Ko-fi renders neatly into our styled wrapper
+    setTimeout(() => {
+      kofiwidget2.init('Keep this going ♥', '#3a9e7e', 'Z8Z71X8388');
+      kofiwidget2.draw();
+    }, 100);
+  </script>
 
-  <p class="footer" id="footer">Every little bit helps. Thank you.</p>
+  <p class="footer" id="footer"></p>
 </div>
 
 <script>
@@ -186,7 +152,7 @@ const content = {
       "Non devi avere tutto sotto controllo. Basta fare il prossimo piccolo passo.",
       "Sei abbastanza. Esattamente come sei, in questo momento.",
       "Le tempeste passano. Anche questa.",
-      "Non devi essere perfetto/a per meritare amore e rispetto.",
+      "Non devi essere perfetto/a per meritare amore e respeito.",
       "Ogni respiro è un nuovo inizio. Sei ancora qui, e questo conta.",
       "Il dolore che senti oggi è la forza che sentirai domani.",
       "Non giudicare il tuo capitolo peggiore come se fosse l'intera storia.",
@@ -198,7 +164,6 @@ const content = {
       "Qualcuno, da qualche parte, è grato che tu esista."
     ],
     messageHero: "<strong>Faccio il tifo per te.</strong><br>Non sei solo/a.",
-    messageSupport: "Se questo ti ha aiutato anche solo un po',<br>considera di supportarmi:",
     footer: "Ogni contributo aiuta. Grazie."
   },
   en: {
@@ -221,7 +186,6 @@ const content = {
       "Someone, somewhere, is grateful you exist."
     ],
     messageHero: "<strong>I'm rooting for you.</strong><br>You are not alone.",
-    messageSupport: "If this helped, even just a little,<br>consider supporting me:",
     footer: "Every little bit helps. Thank you."
   },
   fr: {
@@ -244,7 +208,6 @@ const content = {
       "Quelqu'un, quelque part, est reconnaissant que tu existes."
     ],
     messageHero: "<strong>Je crois en toi.</strong><br>Tu n'es pas seul(e).",
-    messageSupport: "Si ça t'a aidé, même un peu,<br>pense à me soutenir :",
     footer: "Chaque contribution aide. Merci."
   },
   de: {
@@ -263,11 +226,10 @@ const content = {
       "Es ist okay, nicht okay zu sein. Du musst nicht so tun, als ob.",
       "Heute nur eine Sache zu tun ist genug.",
       "Dein Wert hängt nicht davon ab, wie viel du leistest oder gibst.",
-      "Du hast 100% deiner schwierigsten Tage bisher überstanden.",
+      "Du habt 100% deiner schwierigsten Tage bisher überstanden.",
       "Irgendwo da draußen ist jemand dankbar, dass du existierst."
     ],
     messageHero: "<strong>Ich drücke dir die Daumen.</strong><br>Du bist nicht allein.",
-    messageSupport: "Wenn das geholfen hat, auch nur ein bisschen,<br>unterstütze mich gerne:",
     footer: "Jeder Beitrag hilft. Danke."
   },
   es: {
@@ -290,7 +252,6 @@ const content = {
       "Alguien, en algún lugar, está agradecido de que existas."
     ],
     messageHero: "<strong>Te apoyo.</strong><br>No estás solo/a.",
-    messageSupport: "Si esto te ayudó, aunque sea un poco,<br>considera apoyarme:",
     footer: "Cada aporte ayuda. Gracias."
   },
   pt: {
@@ -302,7 +263,7 @@ const content = {
       "Você é suficiente. Exatamente como você é, agora.",
       "As tempestades passam. Esta também vai.",
       "Você não precisa ser perfeito/a para merecer amor e respeito.",
-      "Cada respiração é um novo começo. Você ainda está aqui, e isso importa.",
+      "Cada respiração é un novo começo. Você ainda está aqui, e isso importa.",
       "A dor de hoje é a força de amanhã.",
       "Não julgue seu pior capítulo como se fosse toda a sua história.",
       "Pedir ajuda não é fraqueza. É coragem.",
@@ -313,7 +274,6 @@ const content = {
       "Alguém, em algum lugar, é grato por você existir."
     ],
     messageHero: "<strong>Estou torcendo por você.</strong><br>Você não está sozinho/a.",
-    messageSupport: "Se isso ajudou, mesmo que um pouco,<br>considere me apoiar:",
     footer: "Cada contribuição ajuda. Obrigado."
   },
   ja: {
@@ -336,7 +296,6 @@ const content = {
       "どこかに、あなたが存在することに感謝している人がいる。"
     ],
     messageHero: "<strong>あなたを応援しています。</strong><br>一人じゃない。",
-    messageSupport: "少しでも助けになったなら、<br>サポートしてもらえると嬉しいです：",
     footer: "どんな小さな支援も力になります。ありがとう。"
   },
   zh: {
@@ -359,7 +318,6 @@ const content = {
       "在某个地方，有人感谢你的存在。"
     ],
     messageHero: "<strong>我为你加油。</strong><br>你并不孤单。",
-    messageSupport: "如果这对你有一点点帮助，<br>欢迎支持我：",
     footer: "每一份心意都很重要。谢谢你。"
   },
   ru: {
@@ -382,7 +340,6 @@ const content = {
       "Где-то есть человек, который благодарен за то, что ты существуешь."
     ],
     messageHero: "<strong>Я болею за тебя.</strong><br>Ты не один/одна.",
-    messageSupport: "Если это помогло, даже чуть-чуть,<br>рассмотри возможность поддержать меня:",
     footer: "Каждый вклад важен. Спасибо."
   }
 };
@@ -390,10 +347,6 @@ const content = {
 function getLang() {
   const lang = (navigator.language || 'en').slice(0, 2).toLowerCase();
   return content[lang] ? lang : 'en';
-}
-
-function nl2br(str) {
-  return str.replace(/\n/g, '<br>');
 }
 
 function pickRandom(arr) {
@@ -405,23 +358,35 @@ function init() {
   const c = content[lang];
 
   document.documentElement.lang = lang;
+  document.getElementById('eyebrow').textContent = c.eyebrow;
   document.getElementById('message-hero').innerHTML = c.messageHero;
   document.getElementById('footer').textContent = c.footer;
 
+  const quoteEl = document.getElementById('quote');
+  
+  // Custom refined typographic fallback for CJK languages
   if (lang === 'ja' || lang === 'zh') {
-    document.getElementById('quote').style.fontFamily = "'Playfair Display', serif";
+    quoteEl.style.fontFamily = "'Playfair Display', 'Noto Serif CJK JP', 'Songti SC', 'Source Han Serif', serif";
+    quoteEl.style.fontWeight = "400";
   }
 
-  const quoteEl = document.getElementById('quote');
+  // Pick initial quote
   quoteEl.textContent = pickRandom(c.quotes);
 
+  // Smooth interval rotation
   setInterval(() => {
     quoteEl.classList.add('fading');
     setTimeout(() => {
-      quoteEl.textContent = pickRandom(c.quotes);
+      let nextQuote;
+      // Prevent picking the exact same quote twice in a row
+      do {
+        nextQuote = pickRandom(c.quotes);
+      } while (nextQuote === quoteEl.textContent && c.quotes.length > 1);
+      
+      quoteEl.textContent = nextQuote;
       quoteEl.classList.remove('fading');
-    }, 500);
-  }, 8000);
+    }, 600); // Syncs with CSS fade transition duration
+  }, 9000);
 }
 
 init();
