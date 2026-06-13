@@ -103,6 +103,7 @@
       transform-origin: center top;
       margin-bottom: 1rem;
       display: inline-block;
+      min-height: 36px; /* reserves space to prevent layout snapping */
     }
 
     .footer {
@@ -134,20 +135,12 @@
     <p class="message-hero" id="message-hero"></p>
 
     <div id="kofi-wrap"></div>
-    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-    <script type='text/javascript'>
-      setTimeout(() => {
-        kofiwidget2.init('Keep this going ♥', '#3a9e7e', 'Z8Z71X8388');
-        kofiwidget2.draw();
-      }, 100);
-    </script>
 
     <p class="footer" id="footer"></p>
   </article>
 </main>
 
 <script>
-// Data structure remains local for single-file portability, but logic is cleaned up
 const content = {
   it: {
     eyebrow: "Non sei solo/a",
@@ -243,7 +236,7 @@ const content = {
       "Lo lograrás. No porque sea fácil, sino porque eres más fuerte de lo que crees.",
       "Incluso los días más oscuros terminan. Y tú sigues aquí.",
       "No necesitas tenerlo todo controlado. Solo da el siguiente pequeño paso.",
-      "Eres suficiente. Exactamente como eres, en este momento.",
+      "Eres suficiente. Exactement como eres, en este momento.",
       "Las tormentas pasan. Esta también.",
       "No tienes que ser perfecto/a para merecer amor y respeto.",
       "Cada respiración es un nuevo comienzo. Sigues aquí, y eso importa.",
@@ -269,14 +262,14 @@ const content = {
       "As tempestades passam. Esta também vai.",
       "Você não precisa ser perfeito/a para merecer amor e respeito.",
       "Cada respiração é um novo começo. Você ainda está aqui, e isso importa.",
-      "A dor de hoje é a força de amãnhã.",
-      "Não julgue seu pior capítulo como si fosse toda a sua história.",
+      "A dor de hoje é a força de amanhã.",
+      "Não julgue seu pior capítulo como se fosse toda a sua história.",
       "Pedir ajuda não é fraqueza. É coragem.",
       "Tudo bem não estar bem. Você não precisa fingir.",
       "Fazer só uma coisa hoje já é suficiente.",
       "Seu valor não depende de quanto você produz ou dá aos outros.",
       "Você sobreviveu a 100% dos seus dias mais difíceis até agora.",
-      "Alguien, em algum lugar, é grato por você existir."
+      "Alguém, em algum lugar, é grato por você existir."
     ],
     messageHero: "<strong>Estou torcendo por você.</strong><br>Você não está sozinho/a.",
     footer: "Cada contribuição ajuda. Obrigado."
@@ -349,7 +342,7 @@ const content = {
   }
 };
 
-// STRUCTURAL UPDATE: State tracking via a non-repeating Shuffled Pool system
+// STRUCTURAL UPDATE: Anti-repetition state shuffling logic
 class QuoteEngine {
   constructor(quotes) {
     this.masterQuotes = quotes;
@@ -358,7 +351,6 @@ class QuoteEngine {
 
   getNext() {
     if (this.pool.length === 0) {
-      // Clone the master pool and shuffle using Fisher-Yates
       this.pool = [...this.masterQuotes];
       for (let i = this.pool.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -390,7 +382,6 @@ function init() {
     quoteEl.style.fontWeight = "400";
   }
 
-  // Instantiate our structural quote tracker
   const engine = new QuoteEngine(c.quotes);
   quoteEl.textContent = engine.getNext();
 
@@ -401,6 +392,24 @@ function init() {
       quoteEl.classList.remove('fading');
     }, 600); 
   }, 9000);
+
+  // STRUCTURAL UPDATE: Async script isolated loading block
+  const kofiScript = document.createElement('script');
+  kofiScript.src = 'https://storage.ko-fi.com/cdn/widget/Widget_2.js';
+  kofiScript.async = true;
+  
+  kofiScript.onload = function() {
+    if (typeof kofiwidget2 !== 'undefined') {
+      kofiwidget2.init('Keep this going ♥', '#3a9e7e', 'Z8Z71X8388');
+      kofiwidget2.draw();
+    }
+  };
+
+  kofiScript.onerror = function() {
+    console.warn("Ko-fi widget load blocked or failed. Content runtime preserved safely.");
+  };
+
+  document.body.appendChild(kofiScript);
 }
 
 init();
