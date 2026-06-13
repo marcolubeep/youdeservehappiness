@@ -399,11 +399,18 @@ function init() {
   kofiScript.async = true;
   
   kofiScript.onload = function() {
-    if (typeof kofiwidget2 !== 'undefined') {
+  if (typeof kofiwidget2 !== 'undefined') {
+    // Find the wrapper div
+    const container = document.getElementById('kofi-wrap');
+    if (container) {
+      // Clear any previous content (though there shouldn't be any)
+      container.innerHTML = '';
+      // Initialize and draw the widget into the container
       kofiwidget2.init('Keep this going ♥', '#3a9e7e', 'Z8Z71X8388');
-      kofiwidget2.draw();
+      kofiwidget2.draw(container); // Pass the container element
     }
-  };
+  }
+};
 
   kofiScript.onerror = function() {
     console.warn("Ko-fi widget load blocked or failed. Content runtime preserved safely.");
