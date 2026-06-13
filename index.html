@@ -30,7 +30,8 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: 2rem 1.5rem;
+    padding-inline: 1.5rem;
+    padding-block: 2rem;
     text-align: center;
     overflow-x: hidden;
   }
@@ -45,104 +46,108 @@
     background-size: 200px;
   }
 
+  /* STRUCTURAL UPDATE: Modern CSS Nesting & Logical Properties */
   .wrap {
     position: relative;
     z-index: 1;
     max-width: 480px;
     width: 100%;
-    animation: fadeUp 1.2s ease both;
+    animation: fadeUp 1.2s cubic-bezier(0.215, 0.610, 0.355, 1) both;
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      min-height: 14px;
+    }
+
+    .quote {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+      line-height: 1.6;
+      color: var(--text);
+      margin-bottom: 2.5rem;
+      min-height: 6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-wrap: pretty;
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &.fading { opacity: 0; }
+    }
+
+    .divider2 {
+      width: 1px;
+      height: 40px;
+      background: var(--line);
+      margin: 0 auto 2.5rem;
+    }
+
+    .message-hero {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+
+      strong {
+        color: var(--text);
+        font-weight: 400;
+      }
+    }
+
+    #kofi-wrap {
+      transform: scale(0.85);
+      transform-origin: center top;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 11px;
+      color: var(--muted);
+      opacity: 0.5;
+      letter-spacing: 0.08em;
+    }
   }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 2.5rem;
-    min-height: 14px;
-  }
-
-  .quote {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(1.2rem, 4.5vw, 1.6rem);
-    line-height: 1.6;
-    color: var(--text);
-    margin-bottom: 2.5rem;
-    min-height: 6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-wrap: pretty;
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .quote.fading { opacity: 0; }
-
-  .divider2 {
-    width: 1px;
-    height: 40px;
-    background: var(--line);
-    margin: 0 auto 2.5rem;
-  }
-
-  .message-hero {
-    font-size: 1rem;
-    line-height: 1.75;
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .message-hero strong {
-    color: var(--text);
-    font-weight: 400;
-  }
-
-  #kofi-wrap {
-    transform: scale(0.85);
-    transform-origin: center top;
-    margin-bottom: 1rem;
-    display: inline-block;
-  }
-
-  .footer {
-    margin-top: 2rem;
-    font-size: 11px;
-    color: var(--muted);
-    opacity: 0.5;
-    letter-spacing: 0.08em;
-  }
 </style>
 </head>
 <body>
 <div class="grain"></div>
-<div class="wrap">
 
-  <p class="eyebrow" id="eyebrow"></p>
-  <p class="quote" id="quote"></p>
+<main class="wrap">
+  <article>
+    <p class="eyebrow" id="eyebrow"></p>
+    
+    <p class="quote" id="quote" aria-live="polite"></p>
 
-  <div class="divider2"></div>
+    <div class="divider2"></div>
 
-  <p class="message-hero" id="message-hero"></p>
+    <p class="message-hero" id="message-hero"></p>
 
-  <div id="kofi-wrap"></div>
-  <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-  <script type='text/javascript'>
-    // Small timeout ensures Ko-fi renders neatly into our styled wrapper
-    setTimeout(() => {
-      kofiwidget2.init('Keep this going ♥', '#3a9e7e', 'Z8Z71X8388');
-      kofiwidget2.draw();
-    }, 100);
-  </script>
+    <div id="kofi-wrap"></div>
+    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+    <script type='text/javascript'>
+      setTimeout(() => {
+        kofiwidget2.init('Keep this going ♥', '#3a9e7e', 'Z8Z71X8388');
+        kofiwidget2.draw();
+      }, 100);
+    </script>
 
-  <p class="footer" id="footer"></p>
-</div>
+    <p class="footer" id="footer"></p>
+  </article>
+</main>
 
 <script>
+// Data structure remains local for single-file portability, but logic is cleaned up
 const content = {
   it: {
     eyebrow: "Non sei solo/a",
@@ -152,7 +157,7 @@ const content = {
       "Non devi avere tutto sotto controllo. Basta fare il prossimo piccolo passo.",
       "Sei abbastanza. Esattamente come sei, in questo momento.",
       "Le tempeste passano. Anche questa.",
-      "Non devi essere perfetto/a per meritare amore e respeito.",
+      "Non devi essere perfetto/a per meritare amore e rispetto.",
       "Ogni respiro è un nuovo inizio. Sei ancora qui, e questo conta.",
       "Il dolore che senti oggi è la forza che sentirai domani.",
       "Non giudicare il tuo capitolo peggiore come se fosse l'intera storia.",
@@ -226,7 +231,7 @@ const content = {
       "Es ist okay, nicht okay zu sein. Du musst nicht so tun, als ob.",
       "Heute nur eine Sache zu tun ist genug.",
       "Dein Wert hängt nicht davon ab, wie viel du leistest oder gibst.",
-      "Du habt 100% deiner schwierigsten Tage bisher überstanden.",
+      "Du hast 100% deiner schwierigsten Tage bisher überstanden.",
       "Irgendwo da draußen ist jemand dankbar, dass du existierst."
     ],
     messageHero: "<strong>Ich drücke dir die Daumen.</strong><br>Du bist nicht allein.",
@@ -263,15 +268,15 @@ const content = {
       "Você é suficiente. Exatamente como você é, agora.",
       "As tempestades passam. Esta também vai.",
       "Você não precisa ser perfeito/a para merecer amor e respeito.",
-      "Cada respiração é un novo começo. Você ainda está aqui, e isso importa.",
-      "A dor de hoje é a força de amanhã.",
-      "Não julgue seu pior capítulo como se fosse toda a sua história.",
+      "Cada respiração é um novo começo. Você ainda está aqui, e isso importa.",
+      "A dor de hoje é a força de amãnhã.",
+      "Não julgue seu pior capítulo como si fosse toda a sua história.",
       "Pedir ajuda não é fraqueza. É coragem.",
       "Tudo bem não estar bem. Você não precisa fingir.",
       "Fazer só uma coisa hoje já é suficiente.",
       "Seu valor não depende de quanto você produz ou dá aos outros.",
       "Você sobreviveu a 100% dos seus dias mais difíceis até agora.",
-      "Alguém, em algum lugar, é grato por você existir."
+      "Alguien, em algum lugar, é grato por você existir."
     ],
     messageHero: "<strong>Estou torcendo por você.</strong><br>Você não está sozinho/a.",
     footer: "Cada contribuição ajuda. Obrigado."
@@ -344,13 +349,29 @@ const content = {
   }
 };
 
+// STRUCTURAL UPDATE: State tracking via a non-repeating Shuffled Pool system
+class QuoteEngine {
+  constructor(quotes) {
+    this.masterQuotes = quotes;
+    this.pool = [];
+  }
+
+  getNext() {
+    if (this.pool.length === 0) {
+      // Clone the master pool and shuffle using Fisher-Yates
+      this.pool = [...this.masterQuotes];
+      for (let i = this.pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [this.pool[i], this.pool[j]] = [this.pool[j], this.pool[i]];
+      }
+    }
+    return this.pool.pop();
+  }
+}
+
 function getLang() {
   const lang = (navigator.language || 'en').slice(0, 2).toLowerCase();
   return content[lang] ? lang : 'en';
-}
-
-function pickRandom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
 }
 
 function init() {
@@ -364,28 +385,21 @@ function init() {
 
   const quoteEl = document.getElementById('quote');
   
-  // Custom refined typographic fallback for CJK languages
   if (lang === 'ja' || lang === 'zh') {
-    quoteEl.style.fontFamily = "'Playfair Display', 'Noto Serif CJK JP', 'Songti SC', 'Source Han Serif', serif";
+    quoteEl.style.fontFamily = "'Playfair Display', 'Noto Serif CJK JP', 'Songti SC', serif";
     quoteEl.style.fontWeight = "400";
   }
 
-  // Pick initial quote
-  quoteEl.textContent = pickRandom(c.quotes);
+  // Instantiate our structural quote tracker
+  const engine = new QuoteEngine(c.quotes);
+  quoteEl.textContent = engine.getNext();
 
-  // Smooth interval rotation
   setInterval(() => {
     quoteEl.classList.add('fading');
     setTimeout(() => {
-      let nextQuote;
-      // Prevent picking the exact same quote twice in a row
-      do {
-        nextQuote = pickRandom(c.quotes);
-      } while (nextQuote === quoteEl.textContent && c.quotes.length > 1);
-      
-      quoteEl.textContent = nextQuote;
+      quoteEl.textContent = engine.getNext();
       quoteEl.classList.remove('fading');
-    }, 600); // Syncs with CSS fade transition duration
+    }, 600); 
   }, 9000);
 }
 
